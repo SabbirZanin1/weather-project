@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.animation import FuncAnimation
 
 # Load dataset
 df = pd.read_csv("data\weather_data.csv")
@@ -127,6 +128,47 @@ plt.grid(True)
 plt.show()
 
 
+
+
+
+
+
+
+###Extraaaaa
+
+
+
+
+
+fig, ax = plt.subplots(figsize=(12,5))
+
+x = df["day"]
+y = df["temperature_C"]
+
+line, = ax.plot([], [], color="#00bfff", linewidth=3, marker="o")
+
+ax.set_xlim(1, 30)
+ax.set_ylim(min(y)-2, max(y)+2)
+
+ax.set_xlabel("Day")
+ax.set_ylabel("Temperature (°C)")
+ax.set_title("Animated Temperature Chart")
+
+def animate(i):
+    line.set_data(x[:i], y[:i])
+    return line,
+
+ani = FuncAnimation(
+    fig,
+    animate,
+    frames=len(x)+1,
+    interval=300,
+    blit=True
+)
+
+plt.grid(True)
+
+plt.show()
 
 
 
