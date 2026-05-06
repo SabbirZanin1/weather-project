@@ -8,17 +8,81 @@ df = pd.read_csv("data\weather_data.csv")
 
 # First 5 rows
 #print(df.head())
-
 #print(df)
 
-# Dataset info
-#print(df.info())
+#Dataset info
+print(df.info())
+avg_temp = df["temperature_C"].mean()
+total = df["temperature_C"].sum()
+
+print("Average Temperature:", round(avg_temp, 2), "°C")
+
+highest = df.loc[df["temperature_C"].idxmax()]
+
+print("Highest Temperature Day:")
+print("Day:", highest["day"])
+print("Temperature:", highest["temperature_C"], "°C")
 
 # Statistics
 #print(df.describe())
 
 # Missing values
 #print(df.isnull().sum())
+
+
+
+
+
+fig, ax = plt.subplots(figsize=(12,5))
+
+x = df["day"]
+y = df["temperature_C"]
+
+line, = ax.plot([], [], color="#00bfff", linewidth=3, marker="o")
+
+ax.set_xlim(1, 30)
+ax.set_ylim(min(y)-2, max(y)+2)
+
+ax.set_xlabel("Day")
+ax.set_ylabel("Temperature (°C)")
+ax.set_title("Animated Temperature Chart")
+
+def animate(i):
+    line.set_data(x[:i], y[:i])
+    return line,
+
+ani = FuncAnimation(
+    fig,
+    animate,
+    frames=len(x)+1,
+    interval=300,
+    blit=True
+)
+
+plt.grid(True)
+
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 plt.figure(figsize=(14,3))
@@ -37,7 +101,7 @@ sns.heatmap(
 
 plt.title("Monthly Temperature Heatmap")
 
-plt.show()
+#plt.show()
 
 
 
@@ -68,7 +132,7 @@ plt.title("Monthly Temperature Analysis")
 
 plt.grid(True, linestyle="--", alpha=0.5)
 
-plt.show()
+#plt.show()
 
 
 
@@ -140,35 +204,6 @@ plt.show()
 
 
 
-fig, ax = plt.subplots(figsize=(12,5))
-
-x = df["day"]
-y = df["temperature_C"]
-
-line, = ax.plot([], [], color="#00bfff", linewidth=3, marker="o")
-
-ax.set_xlim(1, 30)
-ax.set_ylim(min(y)-2, max(y)+2)
-
-ax.set_xlabel("Day")
-ax.set_ylabel("Temperature (°C)")
-ax.set_title("Animated Temperature Chart")
-
-def animate(i):
-    line.set_data(x[:i], y[:i])
-    return line,
-
-ani = FuncAnimation(
-    fig,
-    animate,
-    frames=len(x)+1,
-    interval=300,
-    blit=True
-)
-
-plt.grid(True)
-
-plt.show()
 
 
 
