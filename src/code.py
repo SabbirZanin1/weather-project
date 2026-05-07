@@ -8,7 +8,7 @@ df = pd.read_csv("data\weather_data.csv")
 
 # First 5 rows
 #print(df.head())
-#print(df)
+print(df)
 
 #Dataset info
 print(df.info())
@@ -60,23 +60,10 @@ ani = FuncAnimation(
 )
 
 plt.grid(True)
+plt.savefig("output/animated_temperature.png")
+
 
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -100,6 +87,7 @@ sns.heatmap(
 )
 
 plt.title("Monthly Temperature Heatmap")
+
 
 #plt.show()
 
@@ -131,8 +119,8 @@ plt.ylabel("Temperature (°C)")
 plt.title("Monthly Temperature Analysis")
 
 plt.grid(True, linestyle="--", alpha=0.5)
-
-#plt.show()
+plt.savefig("output/monthly_temperature.png")
+plt.show()
 
 
 
@@ -160,9 +148,11 @@ plt.figure(figsize=(6,6))
 plt.pie(values, labels=labels, autopct="%1.1f%%")
 
 plt.title("Weather Condition Distribution")
+plt.savefig("output/piChart.png")
+
 
 plt.show()
-
+                                                                                                            #show
 
 
 
@@ -175,7 +165,7 @@ plt.xlabel("Day")
 plt.ylabel("Temperature (°C)")
 plt.title("Temperature Trend")
 plt.grid(True)  #point grid line plt.show()
-#plt.savefig("output/temp_chart.png")
+plt.savefig("output/temp_chart1.png")
 
 
 
@@ -188,9 +178,10 @@ plt.ylabel("Rainfall (mm)")
 plt.title("Humidity vs Rainfall")
 
 plt.grid(True)
+plt.savefig("output/humidity_vs_rainfall.png")
 
-plt.show()
 
+plt.show()                                                                                  #show()
 
 
 
